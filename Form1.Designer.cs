@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp3
+﻿namespace MyBusinessCard
 {
     partial class Form1
     {
@@ -49,10 +49,13 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.MouseEnter += pictureBox1_MouseEnter;
+            pictureBox1.MouseLeave += pictureBox1_MouseLeave;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = SystemColors.ControlLight;
             label1.Font = new Font("맑은 고딕", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 129);
             label1.Location = new Point(428, 89);
             label1.Name = "label1";
@@ -63,6 +66,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = SystemColors.ControlLight;
             label2.Font = new Font("맑은 고딕", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 129);
             label2.ForeColor = SystemColors.Highlight;
             label2.Location = new Point(428, 191);
@@ -75,6 +79,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = SystemColors.ControlLight;
             label3.Font = new Font("맑은 고딕", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 129);
             label3.ForeColor = SystemColors.HotTrack;
             label3.Location = new Point(428, 287);
@@ -99,6 +104,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = SystemColors.ControlLight;
             label4.Font = new Font("맑은 고딕", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 129);
             label4.ForeColor = Color.DarkGreen;
             label4.Location = new Point(428, 376);

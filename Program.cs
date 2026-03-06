@@ -1,4 +1,4 @@
-namespace WinFormsApp3
+namespace MyBusinessCard
 {
     internal static class Program
     {

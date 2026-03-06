@@ -1,30 +1,51 @@
 using System.Diagnostics;
 
-namespace WinFormsApp3
+namespace MyBusinessCard
 {
     public partial class Form1 : Form
     {
+        // [수정] 사진 상태를 저장할 변수를 클래스 상단에 선언해야 합니다.
+        private bool isFirstImage = true;
+
         public Form1()
         {
             InitializeComponent();
+
+            // [추가] 실행 시 기본 사진을 photo1(MyBusinessCardPhoto1)으로 설정합니다.
+            if (Properties.Resources.MyBusinessCardPhoto1 != null)
+            {
+                pictureBox1.Image = Properties.Resources.MyBusinessCardPhoto1;
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            }
         }
+
+        // --- 마우스 효과 기능 추가 ---
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox1.BorderStyle = BorderStyle.Fixed3D; // 마우스 올리면 3D 경계선
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox1.BorderStyle = BorderStyle.None; // 마우스 떼면 경계선 제거
+        }
+        // --------------------------
 
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
 
+        // 1. 깃허브 주소로 가기 버튼
         private void button1_Click(object sender, EventArgs e)
         {
             string url = "https://github.com/Jaeseo03/WinFormsApp3";
 
             try
             {
-                // 기본 브라우저를 통해 링크 열기
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = url,
-                    UseShellExecute = true // .NET Core 환경에서는 이 설정이 필수입니다.
+                    UseShellExecute = true
                 });
             }
             catch (Exception ex)
@@ -33,31 +54,30 @@ namespace WinFormsApp3
             }
         }
 
+        // 2. 명함 사진 바꾸기 버튼 (photo1 <-> photo2 토글)
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // 리소스 이름이 정확한지 확인하세요. 
+            // 여기서는 코드에 적어주신 MyBusinessCardPhoto1, 2를 사용합니다.
+            if (isFirstImage)
+            {
+                pictureBox1.Image = Properties.Resources.MyBusinessCardPhoto2;
+                isFirstImage = false;
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.MyBusinessCardPhoto1;
+                isFirstImage = true;
+            }
+
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        // 3. 배경 색상 변경 버튼
         private void button3_Click(object sender, EventArgs e)
         {
             Random rd = new Random();
-            // 0~255 사이의 R, G, B 값을 무작위로 생성하여 배경색에 적용
             this.BackColor = Color.FromArgb(rd.Next(256), rd.Next(256), rd.Next(256));
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Title = "명함 사진 선택";
-                ofd.Filter = "이미지 파일 (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp";
-
-                // 사용자가 파일을 선택하고 '확인'을 눌렀을 때만 실행
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    // PictureBox의 이미지를 선택한 파일로 변경
-                    // (이미지 컨트롤의 이름이 pictureBox1이라고 가정합니다)
-                    pictureBox1.Image = Image.FromFile(ofd.FileName);
-
-                    // 사진이 PictureBox 크기에 맞게 조절되도록 설정 (이미 되어있다면 생략 가능)
-                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-            }
         }
     }
 }
