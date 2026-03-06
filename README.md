@@ -17,8 +17,9 @@
 
 ---
 
+
 ### 📸 실행 화면
-*[기능구현 영상 최종본.zip](https://github.com/user-attachments/files/25784025/default.zip)
+*![과제 제출 짤](https://github.com/user-attachments/assets/4430e943-0310-4a3a-b834-d1ee6e3fe214)
 *
 
 ---
