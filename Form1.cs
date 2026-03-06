@@ -38,7 +38,7 @@ namespace MyBusinessCard
         // 1. 깃허브 주소로 가기 버튼
         private void button1_Click(object sender, EventArgs e)
         {
-            string url = "https://github.com/Jaeseo03/WinFormsApp3";
+            string url = "https://github.com/Jaeseo03/MyBusinessCard";
 
             try
             {
